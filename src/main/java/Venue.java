@@ -52,7 +52,7 @@ public class Venue {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO venues(veneu_name, location, description) VALUES (:veneu_name, :location, :description)";
+      String sql = "INSERT INTO venues (venue_name, location, description) VALUES (:venue_name, :location, :description)";
       this.id = (int) con.createQuery(sql, true)
       .addParameter("venue_name", this.venue_name)
       .addParameter("location", this.location)
@@ -84,45 +84,45 @@ public class Venue {
 
   public void delete() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "DELETE FROM venues WHERE id = :id;";
+      String sql = "DELETE FROM venues WHERE id = :id";
       con.createQuery(sql)
-      .addParameter("id", this.id)
+      .addParameter("id", this.getId())
       .executeUpdate();
 
       String joinDeleteQuery = "DELETE FROM bands_venues WHERE band_id = :band_id";
         con.createQuery(joinDeleteQuery)
-          .addParameter("band_id", this.getId())
+          .addParameter("venue_id", this.getId())
           .executeUpdate();
     }
   }
 
-  public void addVenue(Venue venue) {
+  public void addBand(Band band) {
   try(Connection con = DB.sql2o.open()) {
     String sql = "INSERT INTO bands_venues (band_id, venue_id) VALUES (:band_id, :venue_id)";
     con.createQuery(sql)
-      .addParameter("band_id", this.getId())
-      .addParameter("venue_id", venue.getId())
+      .addParameter("band_id", band.getId())
+      .addParameter("venue_id", this.getId())
       .executeUpdate();
   }
 }
 
-public List<Venue> getVenues() {
+public List<Band> getBands() {
   try(Connection con = DB.sql2o.open()){
-    String joinQuery = "SELECT venue_id FROM bands_venues WHERE band_id = :band_id";
-    List<Integer> venueIds = con.createQuery(joinQuery)
-      .addParameter("band_id", this.getId())
+    String joinQuery = "SELECT band_id FROM bands_venues WHERE venue_id = :venue_id";
+    List<Integer> band_ids = con.createQuery(joinQuery)
+      .addParameter("venue_id", this.getId())
       .executeAndFetch(Integer.class);
 
-    List<Venue> venues = new ArrayList<Venue>();
+    List<Band> bands = new ArrayList<Band>();
 
-    for (Integer venueId : venueIds) {
-      String venueQuery = "SELECT * FROM venues WHERE id = :venue_id";
-      Venue venue = con.createQuery(venueQuery)
-        .addParameter("venue_id", venueId)
-        .executeAndFetchFirst(Venue.class);
-      venues.add(venue);
+    for (Integer band_id : band_ids) {
+      String venueQuery = "SELECT * FROM bands WHERE id = :band_id";
+      Band band = con.createQuery(venueQuery)
+        .addParameter("band_id", band_id)
+        .executeAndFetchFirst(Band.class);
+      bands.add(band);
     }
-    return venues;
+    return bands;
   }
 }
 
