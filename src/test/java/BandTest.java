@@ -16,8 +16,60 @@ public class BandTest {
   }
 
   @Test
- public void getBandName_categoryInstantiatesWithBandName_String() {
+ public void getBandName_bandInstantiatesWithBandName_String() {
    Band testBand = new Band("Imagine Dragons", "Indie Rock");
    assertEquals("Imagine Dragons", testBand.getBandName());
  }
-}
+
+ @Test
+ public void
+ getGenre_bandInstantiatesWithGenre_String() {
+   Band testBand = new Band("Imagine Dragons", "Indie Rock");
+   assertEquals("Indie Rock", testBand.getGenre());
+ }
+
+ @Test
+  public void all_emptyAtFirst_0() {
+    assertEquals(0, Band.all().size());
+  }
+  @Test
+  public void equals_returnsTrueIfNamesAretheSame_true() {
+    Band firstBand = new Band("Imagine Dragons", "Indie Rock");
+    Band secondBand = new Band("Imagine Dragons", "Indie Rock");;
+    assertTrue(firstBand.equals(secondBand));
+  }
+
+  @Test
+  public void save_savesObjectIntoDatabase_true() {
+    Band testBand = new Band("Imagine Dragons", "Indie Rock");
+    testBand.save();
+    assertTrue(Band.all().get(0).equals(testBand));
+  }
+
+  @Test
+  public void save_assignsIdToObject_int() {
+    Band testBand = new Band("Imagine Dragons", "Indie Rock");
+    testBand.save();
+    Band savedBand = Band.all().get(0);
+    assertEquals(testBand.getId(), savedBand.getId());
+  }
+
+  @Test
+  public void find_findBandInDatabase_true() {
+    Band testBand = new Band("Imagine Dragons", "Indie Rock");
+    testBand.save();
+    Band savedBand = Band.find(testBand.getId());
+    assertTrue(testBand.equals(savedBand));
+  }
+
+
+    @Test
+    public void delete_deletesBand_true() {
+      Band testBand = new Band("Imagine Dragons", "Indie Rock");
+      testBand.save();
+      int testBandId = testBand.getId();
+      testBand.delete();
+      assertEquals(null, Band.find(testBandId));
+    }
+
+  }
