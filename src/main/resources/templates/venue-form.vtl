@@ -1,0 +1,16 @@
+<h1>Add a Venue</h1>
+
+<form action="/venues/$venue.getId()" method="post">
+  <label for="venue_name">Name:</label>
+  <input id="venue_name" name="venue_name" type="text" required>
+
+  <label for="location">Where:</label>
+  <input id="location" name="location" type="text" required>
+
+  <label for="description">About:</label>
+  <textarea rows="6" cols="50" id="description" name="description" type="text" required></textarea>
+
+  <button type="submit">Submit the Venue</button>
+</form>
+
+<a href="/">Go Back</a>

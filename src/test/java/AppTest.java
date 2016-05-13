@@ -32,13 +32,13 @@ public class AppTest extends FluentTest {
   }
 
   @Test
- public void allBandsPageIsDisplayed() {
-   goTo("http://localhost:4567/");
-   click("a", withText("Bands on Tour"));
-   assertThat(pageSource().contains("Bands on Tour!"));
- }
+  public void allBandsPageIsDisplayed() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Bands on Tour"));
+    assertThat(pageSource().contains("Bands on Tour!"));
+  }
 
- @Test
+  @Test
   public void individualBandPageIsDisplayed() {
     Band testBand = new Band("Cage the Elephant", "Alternative Rock");
     testBand.save();
@@ -47,5 +47,21 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Cage the Elephant", "Alternative Rock");
   }
 
+  @Test
+  public void allVenuesPageIsDisplayed() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Available Venues"));
+    assertThat(pageSource().contains("Available Venues!"));
+  }
 
+  @Test
+  public void individualVenuePageIsDisplayed() {
+    Venue testVenue = new Venue("Crystal Ballroom", "Portland, OR", "A great place with all the latest bands");
+    testVenue.save();
+    String url = String.format("http://localhost:4567/venues/%d", testVenue.getId());
+    goTo(url);
+    assertThat(pageSource()).contains("Crystal Ballroom", "Portland, OR", "A great place with all the latest bands");
+
+
+  }
 }

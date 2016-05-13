@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BandTest {
-
+  
   @Rule
   public DatabaseRule database = new DatabaseRule();
 
@@ -16,19 +16,19 @@ public class BandTest {
   }
 
   @Test
- public void getBandName_bandInstantiatesWithBandName_String() {
-   Band testBand = new Band("Imagine Dragons", "Indie Rock");
-   assertEquals("Imagine Dragons", testBand.getBandName());
- }
+  public void getBandName_bandInstantiatesWithBandName_String() {
+    Band testBand = new Band("Imagine Dragons", "Indie Rock");
+    assertEquals("Imagine Dragons", testBand.getBandName());
+  }
 
- @Test
- public void
- getGenre_bandInstantiatesWithGenre_String() {
-   Band testBand = new Band("Imagine Dragons", "Indie Rock");
-   assertEquals("Indie Rock", testBand.getGenre());
- }
+  @Test
+  public void
+  getGenre_bandInstantiatesWithGenre_String() {
+    Band testBand = new Band("Imagine Dragons", "Indie Rock");
+    assertEquals("Indie Rock", testBand.getGenre());
+  }
 
- @Test
+  @Test
   public void all_emptyAtFirst_0() {
     assertEquals(0, Band.all().size());
   }
@@ -63,13 +63,13 @@ public class BandTest {
   }
 
 
-    @Test
-    public void delete_deletesBand_true() {
-      Band testBand = new Band("Imagine Dragons", "Indie Rock");
-      testBand.save();
-      int testBandId = testBand.getId();
-      testBand.delete();
-      assertEquals(null, Band.find(testBandId));
-    }
-
+  @Test
+  public void delete_deletesBand_true() {
+    Band testBand = new Band("Imagine Dragons", "Indie Rock");
+    testBand.save();
+    int testBandId = testBand.getId();
+    testBand.delete();
+    assertEquals(null, Band.find(testBandId));
   }
+
+}
