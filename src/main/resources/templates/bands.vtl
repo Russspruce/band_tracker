@@ -1,0 +1,6 @@
+<h1>Bands on Tour!</h1>
+
+#foreach ($band in $bands)
+  <a href="/bands/$band.getId()">$band.getBandName()</a>
+  <br>
+#end

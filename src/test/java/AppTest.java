@@ -31,5 +31,21 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Jam Trek");
   }
 
+  @Test
+ public void allBandsPageIsDisplayed() {
+   goTo("http://localhost:4567/");
+   click("a", withText("Bands on Tour"));
+   assertThat(pageSource().contains("Bands on Tour!"));
+ }
+
+ @Test
+  public void individualBandPageIsDisplayed() {
+    Band testBand = new Band("Cage the Elephant", "Alternative Rock");
+    testBand.save();
+    String url = String.format("http://localhost:4567/bands/%d", testBand.getId());
+    goTo(url);
+    assertThat(pageSource()).contains("Cage the Elephant", "Alternative Rock");
+  }
+
 
 }
