@@ -18,6 +18,7 @@ _A program designed to help the roadies keep track of all the touring bands in t
 * _The tables for band_tracker database are as follows:
 * _ -bands (id serial PRIMARY KEY, band_name varchar, genre varchar).
 * _ -venues (id serial PRIMARY KEY, venue_name varchar, location varchar, description varchar).
+* _Create those tables and run them to allow program to run.
 
 
 ## Known Bugs
@@ -34,7 +35,7 @@ _{Bootstrap}_
 _{HTML/CSS}_
 _{java}_
 _{Spark}_
-_{jQuery}_ 
+_{jQuery}_
 
 ### License
 
