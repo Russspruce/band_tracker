@@ -15,6 +15,9 @@ _A program designed to help the roadies keep track of all the touring bands in t
 * _To install, go to GitHub_
 * _Copy file path and clone onto computer._
 * _Go into folder, and use pg_dump on files to be added to local database._
+* _The tables for band_tracker database are as follows:
+* _ -bands (id serial PRIMARY KEY, band_name varchar, genre varchar).
+* _ -venues (id serial PRIMARY KEY, venue_name varchar, location varchar, description varchar).
 
 
 ## Known Bugs
@@ -29,6 +32,9 @@ _Please email me at russspruce@gmail.com with any questions or comments._
 
 _{Bootstrap}_
 _{HTML/CSS}_
+_{java}_
+_{Spark}_
+_{jQuery}_ 
 
 ### License
 
