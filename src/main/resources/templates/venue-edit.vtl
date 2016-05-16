@@ -1,0 +1,16 @@
+<h1>$venue.getVenueName()</h1>
+
+
+
+
+
+<form action="/venues/$venue.getId()/edit" method="post">
+  <input id="description" name="description" type="hidden" value="$venue.getId()">
+  <label for="description">Update Description:</label>
+  <textarea rows="6" cols="50" type="text" id="description" name="description">$venue.getDescription()</textarea>
+  <button type="submit" class="btn btn-info">Update $venue.getVenueName()</button>
+</form>
+
+
+
+<p><a href="/venues">Go back</a></p>
