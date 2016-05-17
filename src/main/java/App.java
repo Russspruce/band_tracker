@@ -53,7 +53,7 @@ public class App {
       HashMap<String, Object> model = new HashMap<String, Object>();
       Band band = Band.find(Integer.parseInt(request.params("id")));
       band.delete();
-      response.redirect("/bandss");
+      response.redirect("/bands");
       return null;
     });
 

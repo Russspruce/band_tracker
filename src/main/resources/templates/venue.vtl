@@ -4,13 +4,13 @@
 
 <h2>About: $venue.getDescription()</h2>
 
-<h4>Sign up a band to $venue.getVenueName()</h4>
+<h2>Sign up a band to $venue.getVenueName()</h2>
 <br>
-#if($venue.getBandName())
-  <p>Curent lineup:</p>
+#if($venue.getBands())
+  <h3>Current lineup:</h3>
   <ul>
     #foreach($band in $venue.getBands())
-      <li>$band.getBandName()</li>
+      <h3><li>$band.getBandName()</li></h3>
     #end
   </ul>
 #end
