@@ -59,7 +59,7 @@ public class App {
 
     get("/venues", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      model.put("venue", Venue.all());
+      model.put("venues", Venue.all());
       model.put("template", "templates/venues.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -94,6 +94,7 @@ public class App {
       HashMap<String, Object> model = new HashMap<String, Object>();
       Venue venue = Venue.find(Integer.parseInt(request.params("id")));
       model.put("venue", venue);
+      model.put("venue_name", venue.getVenueName());
       model.put("description", venue.getDescription());
       model.put("template", "templates/venue-edit.vtl");
       return new ModelAndView(model, layout);
@@ -102,8 +103,9 @@ public class App {
     post("/venues/:id/edit", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       Venue venue = Venue.find(Integer.parseInt(request.params("id")));
+      String venue_name = request.queryParams("venue_name");
       String description = request.queryParams("description");
-      venue.update(description);
+      venue.update(venue_name, description);
       String url = String.format("/venues/%d", venue.getId());
       response.redirect(url);
       return new ModelAndView(model, layout);

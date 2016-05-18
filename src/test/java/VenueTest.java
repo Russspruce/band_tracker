@@ -53,7 +53,7 @@ public class VenueTest {
   public void update_updatesVenueDescription_true() {
     Venue testVenue = new Venue("Crystal Ballroom", "Portland, OR", "A great place with all the latest bands");
     testVenue.save();
-    testVenue.update("Doug Fir Lounge");
+    testVenue.update("Doug Fir Lounge", "A classic concert hall where it is great to hang out.");
     assertEquals("Doug Fir Lounge", Venue.find(testVenue.getId()).getVenueName());
   }
 

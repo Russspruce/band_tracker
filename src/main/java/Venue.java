@@ -32,7 +32,7 @@ public class Venue {
     return description;
   }
   public static List<Venue> all() {
-    String sql = "SELECT id, description FROM venues";
+    String sql = "SELECT * FROM venues";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Venue.class);
     }
@@ -72,11 +72,12 @@ public class Venue {
     }
   }
 
-  public void update(String newVenueName) {
+  public void update(String venue_name, String description) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE venues SET venue_name = :venue_name WHERE id = :id";
+      String sql = "UPDATE venues SET venue_name = :venue_name, description = :description WHERE id = :id";
       con.createQuery(sql)
-      .addParameter("venue_name", newVenueName)
+      .addParameter("venue_name", venue_name)
+      .addParameter("description", description)
       .addParameter("id", this.id)
       .executeUpdate();
     }

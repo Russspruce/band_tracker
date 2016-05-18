@@ -1,13 +1,13 @@
 <h1>$band.getBandName()</h1>
-<br>
+  <br>
 <h2>Genre: $band.getGenre()</h2>
-<br>
-#if($band.getVenueName())
-  <h3>Touring Venues:</h3>
-  <ul>
-    #foreach($venue in $band.getVenues())
-      <h3><li>$venue.getVenueName()</li></h3>
-    #end
-  </ul>
+  <br>
+#if ($band.getVenues())
+  <h3>All played Venues:</h3>
 #end
+<ul>
+  #foreach ($venue in $band.getVenues())
+    <li><a href="/venues/$venue.getId()">$venue.getVenueName()</a></li>
+  #end
+</ul>
 <h4><a href="/bands">Go back</a><h4>
